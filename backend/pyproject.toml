@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "spectra-stego"
+version = "0.1.0"
+description = "SPECTRA — multimedia steganography & hidden data analysis workbench"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.115",
+    "uvicorn>=0.30",
+    "pydantic>=2.7",
+    "pydantic-settings>=2.3",
+    "sqlalchemy>=2.0",
+    "python-multipart>=0.0.9",
+    "python-magic>=0.4.27",
+]
+
+[project.optional-dependencies]
+# Analysis libraries are grouped by the roadmap phase that first needs them.
+image = ["Pillow>=10", "numpy>=1.26", "scipy>=1.11", "opencv-python-headless>=4.9", "scikit-image>=0.22", "pillow-heif>=0.16"]
+audio = ["librosa>=0.10", "soundfile>=0.12", "mutagen>=1.47", "numpy>=1.26", "scipy>=1.11"]
+video = ["av>=12", "opencv-python-headless>=4.9", "numpy>=1.26"]
+forensics = ["construct>=2.10", "yara-python>=4.5"]
+dev = ["pytest>=8", "httpx>=0.27", "ruff>=0.5"]
+
+[tool.setuptools.packages.find]
+include = ["spectra*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+filterwarnings = ["ignore::DeprecationWarning"]
+
+[tool.ruff]
+line-length = 110
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+ignore = ["B008"]

@@ -1,0 +1,85 @@
+@import "tailwindcss";
+
+/* SPECTRA is dark-only for now (the brief asks for dark by default). No web fonts: the UI must work offline. */
+:root {
+  --background: #0a0c0f;
+  --foreground: #d5dbe3;
+  --card: #0f1318;
+  --card-foreground: #d5dbe3;
+  --popover: #11161c;
+  --popover-foreground: #d5dbe3;
+  --primary: #5eead4;
+  --primary-foreground: #04100e;
+  --secondary: #171d25;
+  --secondary-foreground: #d5dbe3;
+  --muted: #141a21;
+  --muted-foreground: #8793a3;
+  --accent: #19212b;
+  --accent-foreground: #e8edf3;
+  --destructive: #f87171;
+  --destructive-foreground: #160707;
+  --border: #212a34;
+  --input: #2a3541;
+  --ring: #5eead4;
+  --warn: #fbbf24;
+  --ok: #4ade80;
+  --info: #7cb4ff;
+  --radius: 0.375rem;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-warn: var(--warn);
+  --color-ok: var(--ok);
+  --color-info: var(--info);
+  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 2px);
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "Cascadia Mono", "JetBrains Mono", Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+@layer base {
+  * { border-color: var(--border); }
+  html, body, #root { height: 100%; }
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    font-size: 13px;
+    line-height: 1.45;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: color-mix(in oklab, var(--primary) 35%, transparent); }
+  :focus-visible { outline: 1px solid var(--ring); outline-offset: 1px; }
+  * { scrollbar-width: thin; scrollbar-color: var(--input) transparent; }
+  code, pre, kbd, .mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+}
+
+/* Small-caps style label used for panel headings and field names. */
+.label-caps {
+  font-size: 10.5px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+  font-weight: 600;
+}
